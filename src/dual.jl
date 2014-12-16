@@ -182,7 +182,15 @@ for (funsym, exp) in Calculus.symbolic_derivatives_1arg()
     end
 end
 
+# import the available bessel functions from Calculus.jl and build
+# functions that solve the dual
 for (funsym, exp) in Calculus.symbolic_derivative_bessel_list()
+    if funsym in (:hankelh1,:hankelh2)
+      continue
+      #both hankelh functions return complex numbers,
+      #and complex duals aren't supported
+      #ignore those functions
+    end
     @eval function $(funsym)(nu::Int,z::Dual)
         xp = epsilon(z)
         x = real(z)
