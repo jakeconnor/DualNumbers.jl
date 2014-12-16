@@ -164,7 +164,7 @@ end
 ^(z::Dual, n::Real) = dual(real(z)^n, epsilon(z)*n*real(z)^(n-1))
 NaNMath.pow(z::Dual, n::Real) = dual(NaNMath.pow(real(z),n), epsilon(z)*n*NaNMath.pow(real(z),n-1))
 
-for (funsym, exp) in Calculus.derivative_rules
+for (funsym, exp) in Calculus.symbolic_derivatives_1arg()
     @eval function $(funsym)(z::Dual)
         xp = epsilon(z)
         x = real(z)
