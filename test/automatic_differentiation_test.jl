@@ -38,3 +38,7 @@ function squareroot(x)
 end
 
 @test_approx_eq epsilon(squareroot(Dual(10000.0,1.0))) 0.005
+
+x=dual(5,1)
+y=besselj(4,x)
+@test_approx_eq epsilon(y) 0.0518453422467
