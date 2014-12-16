@@ -41,4 +41,7 @@ end
 
 x=dual(5,1)
 y=besselj(4,x)
-@test_approx_eq epsilon(y) 0.0518453422467
+@test_approx_eq epsilon(y) ((besselj(3, real(x)) - besselj(5, real(x))) / 2 )
+
+y=besselk(6,x)
+@test_approx_eq epsilon(y) ( -1 * (besselk(5, real(x)) + besselk(7, real(x))) / 2   )
