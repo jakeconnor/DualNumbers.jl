@@ -168,7 +168,7 @@ for (funsym, exp) in Calculus.symbolic_derivatives_1arg()
     @eval function $(funsym)(z::Dual)
         xp = epsilon(z)
         x = real(z)
-        Dual($(funsym)(x),$exp)
+        Dual($(funsym)(x),xp*$exp)
     end
     # extend corresponding NaNMath methods
     if funsym in (:sin, :cos, :tan, :asin, :acos, :acosh, :atanh, :log, :log2, :log10,
@@ -177,7 +177,7 @@ for (funsym, exp) in Calculus.symbolic_derivatives_1arg()
         @eval function $(funsym)(z::Dual)
             xp = epsilon(z)
             x = real(z)
-            Dual($(funsym)(x),$exp)
+            Dual($(funsym)(x),xp*$exp)
         end
     end
 end
