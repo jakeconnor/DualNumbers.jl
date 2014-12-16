@@ -186,7 +186,7 @@ for (funsym, exp) in Calculus.symbolic_derivative_bessel_list()
     @eval function $(funsym)(nu::Int,z::Dual)
         xp = epsilon(z)
         x = real(z)
-        Dual($(funsym)(nu,x),$exp)
+        Dual($(funsym)(nu,x),xp*$exp)
     end
 end
 
